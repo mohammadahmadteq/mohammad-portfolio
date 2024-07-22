@@ -1,0 +1,15 @@
+@import url('./manrope.css');
+
+:root {
+	font-size: 16px;
+	text-rendering: optimizeLegibility;
+	font-family: 'Manrope-Variable';
+}
+
+h1 {
+	font-size: 15rem;
+}
+
+h2 {
+	font-size: 7rem;
+}
