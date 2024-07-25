@@ -4,12 +4,20 @@
 	font-size: 16px;
 	text-rendering: optimizeLegibility;
 	font-family: 'Manrope-Variable';
+	--color-bg: #f6faf9;
+	--color-text: #2c5b6c;
+	background-color: var(--color-bg);
+	color: var(--color-text);
 }
 
 h1 {
-	font-size: 15rem;
+	font-size: 10rem;
 }
 
 h2 {
-	font-size: 7rem;
+	font-size: 4rem;
+}
+
+h3 {
+	font-size: 2rem;
 }
