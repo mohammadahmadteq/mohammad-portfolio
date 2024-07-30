@@ -18,10 +18,10 @@
 			<h1 class="remove-margin">Hello,</h1>
 			<h2 class="remove-margin">I am Mohammad Ahmad!</h2>
 			<h3 class="remove-margin">Software Engineer</h3>
-			<p class="remove-margin">Skills</p>
 		</div>
-		<div class="wave-picture">👋</div>
 	</div>
+
+	<p class="remove-margin">Top Skills:</p>
 
 	<div class="logo-container">
 		<Tooltip style={{ backgroundColor: 'white', color: 'black' }} arrow={false} content="Javascript"
