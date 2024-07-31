@@ -1,0 +1,103 @@
+<script lang="ts">
+	import { timeline } from 'motion';
+	import { onMount } from 'svelte';
+	import { elasticInOut } from 'svelte/easing';
+	export let myExperience;
+
+	let timelineElement: Element;
+
+	let experienceBinds: Element[] = [];
+
+	let timelineMarginLeft = '0px';
+
+	let completeAnimation: any = [];
+	const getTimeLineLength = (experienceFirst: Element, experienceLast: Element) => {
+		const { left: firstLeft } = experienceFirst.getBoundingClientRect();
+		const { left: lastLeft } = experienceLast.getBoundingClientRect();
+
+		const length = lastLeft - firstLeft;
+
+		return length;
+	};
+	onMount(() => {
+		timelineMarginLeft = `${experienceBinds[0].getBoundingClientRect().width * 0.5}px`;
+
+		for (const elem in experienceBinds) {
+			if (elem === '0') {
+				continue;
+			}
+
+			completeAnimation.push([
+				timelineElement,
+				{
+					width: `${getTimeLineLength(experienceBinds[0], experienceBinds[elem])}px`
+				},
+				{
+					duration: 1
+				}
+			]);
+			completeAnimation.push([
+				experienceBinds[elem],
+				{
+					width: '1.5rem',
+					height: '1.5rem'
+				},
+				{
+					duration: 1,
+					easing: elasticInOut,
+					at: '-0.55'
+				}
+			]);
+		}
+
+		timeline(completeAnimation);
+	});
+</script>
+
+<div class="experience-text-container">
+	{#each myExperience as experience, index (experience.id)}
+		<div>
+			<div style="max-width: 4.5rem">
+				<svelte:component this={experience.company} />
+			</div>
+			<div style="margin-bottom: 0.25rem;">{experience.designation}</div>
+			<div
+				class="experience-circle"
+				style="width: {index === 0 ? '1.5rem' : '1rem'}; height:{index === 0 ? '1.5rem' : '1rem'}"
+				bind:this={experienceBinds[index]}
+			/>
+			<div style="margin-top: 0.25rem;">{experience.year}</div>
+		</div>
+	{/each}
+</div>
+
+<div class="timeline-container" style="--timelineMarginLeft:{timelineMarginLeft}">
+	<div bind:this={timelineElement} class="timeline-line"></div>
+</div>
+
+<style>
+	.timeline-container {
+		padding-left: var(--timelineMarginLeft);
+	}
+
+	.experience-circle {
+		border-radius: 100%;
+		background-color: var(--color-text);
+	}
+
+	.experience-text-container {
+		position: relative;
+		top: 2.6rem;
+		left: 0.5rem;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.timeline-line {
+		height: 0.5rem;
+		width: 0px;
+		background-color: var(--color-text);
+		border-radius: 1rem;
+		max-width: 100%;
+	}
+</style>
