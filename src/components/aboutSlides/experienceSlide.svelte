@@ -11,8 +11,14 @@
 		{
 			designation: 'Software Engineer',
 			company: CarbonteqLogo,
-			year: 2024,
+			year: 2023,
 			id: '2'
+		},
+		{
+			designation: ' Senior Software Engineer',
+			company: CarbonteqLogo,
+			year: 2024,
+			id: '3'
 		}
 	];
 </script>

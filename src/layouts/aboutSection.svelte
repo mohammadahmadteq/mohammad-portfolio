@@ -4,7 +4,6 @@
 	import ExperienceSlide from '@components/aboutSlides/experienceSlide.svelte';
 	import ProjectSlide from '@components/aboutSlides/projectSlide.svelte';
 	import Modal from '@components/common/modal.svelte';
-	import ViewPdf from '@components/common/viewPdf.svelte';
 
 	let emblaApi: EmblaCarouselType;
 
