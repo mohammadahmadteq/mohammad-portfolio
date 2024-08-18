@@ -5,5 +5,6 @@
 </script>
 
 <IntroSection />
+
 <div style="margin-block: 2rem;" />
 <AboutSection />

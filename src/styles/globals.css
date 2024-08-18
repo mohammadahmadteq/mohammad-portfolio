@@ -11,6 +11,10 @@
 	--tooltip-font-family: 'Manrope-Variable' !important;
 }
 
+body {
+	margin: 0px;
+}
+
 h1 {
 	font-size: 10rem;
 }

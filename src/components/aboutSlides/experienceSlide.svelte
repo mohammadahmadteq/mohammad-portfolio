@@ -18,7 +18,8 @@
 </script>
 
 <div class="section-container">
-	\ <ExperienceTimeline myExperience={exprerience} />
+	<h3>Experience</h3>
+	<ExperienceTimeline myExperience={exprerience} />
 </div>
 
 <style>
