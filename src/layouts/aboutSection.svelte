@@ -44,6 +44,7 @@
 	.embla {
 		overflow: hidden;
 		width: 100%;
+		min-height: 400px;
 	}
 	.embla__container {
 		display: flex;
