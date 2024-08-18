@@ -90,7 +90,8 @@
 		top: 2.6rem;
 		left: 0.5rem;
 		display: flex;
-		justify-content: space-between;
+		justify-content: left;
+		gap: 3rem;
 	}
 
 	.timeline-line {
