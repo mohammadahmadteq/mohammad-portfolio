@@ -28,7 +28,7 @@
 	];
 </script>
 
-<div>
+<div class="project-container">
 	<h3>Projects</h3>
 
 	<div class="project-flex">
@@ -46,6 +46,9 @@
 </div>
 
 <style>
+	.project-container {
+		padding: 0rem 5rem;
+	}
 	.project-flex {
 		display: flex;
 		justify-content: space-between;

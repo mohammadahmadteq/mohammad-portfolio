@@ -4,6 +4,7 @@
 	import ExperienceSlide from '@components/aboutSlides/experienceSlide.svelte';
 	import ProjectSlide from '@components/aboutSlides/projectSlide.svelte';
 	import Modal from '@components/common/modal.svelte';
+	import MiscSlide from '@components/aboutSlides/miscSlide.svelte';
 
 	let emblaApi: EmblaCarouselType;
 
@@ -32,9 +33,9 @@
 	<button class="embla__prev" on:click={() => emblaApi.scrollPrev()}>Prev</button>
 	<div class="embla" use:emblaCarouselSvelte on:emblaInit={onInit}>
 		<div class="embla__container">
-			<div class="embla__slide"><ExperienceSlide /></div>
 			<div class="embla__slide"><ProjectSlide /></div>
-			<div class="embla__slide">Slide 3</div>
+			<div class="embla__slide"><ExperienceSlide /></div>
+			<div class="embla__slide"><MiscSlide /></div>
 		</div>
 	</div>
 	<button class="embla__next" on:click={() => emblaApi.scrollNext()}>Next</button>
