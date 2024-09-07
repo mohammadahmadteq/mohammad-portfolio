@@ -21,11 +21,13 @@
 			id: '3'
 		}
 	];
+
+	export let timeLineAnimation: any;
 </script>
 
 <div class="section-container">
 	<h3>Experience</h3>
-	<ExperienceTimeline myExperience={exprerience} />
+	<ExperienceTimeline bind:playAnimation={timeLineAnimation} myExperience={exprerience} />
 </div>
 
 <style>

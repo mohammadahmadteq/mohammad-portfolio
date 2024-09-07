@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { timeline } from 'motion';
+	import { timeline, type TimelineDefinition } from 'motion';
 	import { onMount } from 'svelte';
 	import { elasticInOut } from 'svelte/easing';
 	export let myExperience;
@@ -10,7 +10,6 @@
 
 	let timelineMarginLeft = '0px';
 
-	let completeAnimation: any = [];
 	const getTimeLineLength = (experienceFirst: Element, experienceLast: Element) => {
 		const { left: firstLeft } = experienceFirst.getBoundingClientRect();
 		const { left: lastLeft } = experienceLast.getBoundingClientRect();
@@ -19,8 +18,36 @@
 
 		return length;
 	};
-	onMount(() => {
+	export const playAnimation = (isReset?: boolean) => {
 		timelineMarginLeft = `${experienceBinds[0].getBoundingClientRect().width * 0.5}px`;
+
+		const completeAnimation: TimelineDefinition = [
+			[
+				timelineElement,
+				{
+					width: 0
+				},
+				{
+					duration: 0
+				}
+			]
+		];
+
+		if (isReset) {
+			const reset: TimelineDefinition = [
+				[
+					timelineElement,
+					{
+						width: 0
+					},
+					{
+						duration: 0
+					}
+				]
+			];
+			timeline(reset);
+			return;
+		}
 
 		for (const elem in experienceBinds) {
 			if (elem === '0') {
@@ -51,7 +78,7 @@
 		}
 
 		timeline(completeAnimation);
-	});
+	};
 </script>
 
 <div class="experience-text-container">
