@@ -65,6 +65,7 @@
 <style>
 	.intro-padding {
 		padding-inline: 10rem;
+		min-height: 495px;
 	}
 	.intro-section {
 		display: flex;

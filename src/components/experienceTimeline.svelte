@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { timeline, type TimelineDefinition } from 'motion';
-	import { onMount } from 'svelte';
 	import { elasticInOut } from 'svelte/easing';
 	export let myExperience;
 
@@ -35,6 +34,18 @@
 
 		if (isReset) {
 			const reset: TimelineDefinition = [
+				...experienceBinds.slice(1).map(exp => {
+					return [
+						exp,
+						{
+							width: '1rem',
+							height: '1rem'
+						},
+						{
+							duration: 0
+						}
+					] as any;
+				}),
 				[
 					timelineElement,
 					{
@@ -45,6 +56,7 @@
 					}
 				]
 			];
+
 			timeline(reset);
 			return;
 		}
