@@ -1,4 +1,6 @@
 <script>
+	import { Lightbox } from 'svelte-lightbox';
+
 	const projectsList = [
 		{
 			imageUrl: 'img',
@@ -35,7 +37,9 @@
 		{#each projectsList as proj}
 			<div class="project-card">
 				<div class="project-image">
-					<img src={proj.imageUrl} alt={proj.name} width="100%" />
+					<Lightbox description={proj.name}>
+						<img src={proj.imageUrl} alt={proj.name} width="100%" />
+					</Lightbox>
 				</div>
 
 				<span style="font-weight: 700">{proj.name}</span>

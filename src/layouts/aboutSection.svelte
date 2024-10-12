@@ -31,7 +31,7 @@
 </Modal>
 
 <button
-	class="resume-button"
+	class="big-round-button resume-button"
 	on:click={() => {
 		showModal = true;
 	}}
@@ -168,5 +168,8 @@
 		column-gap: 0.25rem;
 		display: flex;
 		justify-content: center;
+	}
+
+	.resume-button {
 	}
 </style>
