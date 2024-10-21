@@ -35,6 +35,7 @@
 	}
 	.section {
 		max-width: 1440px;
+		width: 100%;
 		padding-inline: 5rem;
 
 		@media screen and (max-width: 576px) {

@@ -51,7 +51,7 @@
 
 <style>
 	.project-container {
-		padding-right: 0.5rem;
+		padding-inline: 0.5rem;
 	}
 	.project-flex {
 		display: flex;

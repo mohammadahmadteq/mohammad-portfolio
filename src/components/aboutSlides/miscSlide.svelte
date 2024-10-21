@@ -26,7 +26,7 @@
 		margin-bottom: 0.5rem;
 	}
 	.misc-container {
-		padding-left: 0.5rem;
+		padding-inline: 0.5rem;
 	}
 	.misc-bullets {
 		font-size: 1.5rem;

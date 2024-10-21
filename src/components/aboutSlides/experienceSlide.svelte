@@ -33,6 +33,6 @@
 <style>
 	.section-container {
 		padding-bottom: 2rem;
-		padding-left: 0.5rem;
+		padding-inline: 0.5rem;
 	}
 </style>

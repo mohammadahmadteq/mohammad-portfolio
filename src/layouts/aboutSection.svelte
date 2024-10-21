@@ -12,8 +12,11 @@
 
 	function playAnimation(emblaApi: EmblaCarouselType) {
 		timeLineAnimation(emblaApi.slidesInView().join('') !== '1');
+		emblaApi.scrollProgress();
 
-		onScreen = emblaApi.slidesInView()[0];
+		if (emblaApi.slidesInView().length === 1) {
+			onScreen = emblaApi.slidesInView()[0];
+		}
 	}
 	const onInit = (event: any) => {
 		emblaApi = event.detail;
@@ -96,7 +99,6 @@
 	}
 	.embla__slide {
 		flex: 0 0 100%;
-		min-width: 100%;
 		margin-inline: 5px;
 	}
 
@@ -117,7 +119,7 @@
 
 	.button-style {
 		position: relative;
-		height: 21rem;
+		height: 100%;
 		border: none;
 		background-color: unset;
 		font-size: 4rem;
