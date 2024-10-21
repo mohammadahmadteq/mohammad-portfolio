@@ -15,7 +15,7 @@
 
 		<div class="misc-icons-container">
 			<div class="logo-container" style=""><Paintbrush /></div>
-			<div class="logo-container l2" style=" bottom:7rem;"><MaterialsScience /></div>
+			<div class="logo-container l2" style=";"><MaterialsScience /></div>
 			<div class="logo-container l3" style=""><VrSystem /></div>
 		</div>
 	</div>
@@ -26,7 +26,7 @@
 		margin-bottom: 0.5rem;
 	}
 	.misc-container {
-		padding: 0rem 5rem;
+		padding-left: 0.5rem;
 	}
 	.misc-bullets {
 		font-size: 1.5rem;
@@ -41,6 +41,12 @@
 
 	.l2 {
 		animation-delay: 1s;
+
+		bottom: 7rem;
+
+		@media screen and (max-width: 576px) {
+			bottom: 0rem;
+		}
 	}
 	.l3 {
 		animation-delay: 2s;
@@ -61,10 +67,20 @@
 	.misc-flex {
 		display: flex;
 		justify-content: space-between;
+
+		@media screen and (max-width: 576px) {
+			flex-direction: column;
+		}
 	}
 
 	.misc-icons-container {
 		display: flex;
-		max-width: 45vw;
+		max-width: 42dvw;
+
+		@media screen and (max-width: 576px) {
+			display: flex;
+			max-width: 80vw;
+			margin-top: 2rem;
+		}
 	}
 </style>

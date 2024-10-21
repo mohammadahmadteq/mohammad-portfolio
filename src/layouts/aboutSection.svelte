@@ -8,8 +8,12 @@
 
 	let emblaApi: EmblaCarouselType;
 	let emblaScreens: number[] = [];
+	let onScreen = 0;
+
 	function playAnimation(emblaApi: EmblaCarouselType) {
 		timeLineAnimation(emblaApi.slidesInView().join('') !== '1');
+
+		onScreen = emblaApi.slidesInView()[0];
 	}
 	const onInit = (event: any) => {
 		emblaApi = event.detail;
@@ -21,8 +25,6 @@
 
 	let timeLineAnimation: any;
 	let buttonElementLeft: Element;
-
-	let onScreen = 0;
 </script>
 
 <Modal bind:showModal>
@@ -30,57 +32,57 @@
 	</iframe>
 </Modal>
 
-<button
-	class="big-round-button resume-button"
-	on:click={() => {
-		showModal = true;
-	}}
->
-	View Resume
-</button>
-
-<div class="carousal-container">
+<div style="width: 100%">
 	<button
-		class="button-style button-left"
+		class="big-round-button resume-button"
 		on:click={() => {
-			emblaApi.scrollPrev();
-
-			if (onScreen > 0) {
-				onScreen--;
-			}
+			showModal = true;
 		}}
-		bind:this={buttonElementLeft}>{'<'}</button
 	>
-	<div class="embla" use:emblaCarouselSvelte on:emblaInit={onInit}>
-		<div class="embla__container">
-			<div class="embla__slide"><ProjectSlide /></div>
-			<div class="embla__slide"><ExperienceSlide bind:timeLineAnimation /></div>
-			<div class="embla__slide"><MiscSlide /></div>
-		</div>
-	</div>
-	<button
-		class="button-style button-right"
-		on:click={() => {
-			emblaApi.scrollNext();
-
-			if (onScreen < 2) {
-				onScreen++;
-			}
-		}}>{'>'}</button
-	>
-</div>
-<div class="dot-button-container">
-	{#each emblaScreens as screen, index}
+		View Resume
+	</button>
+	<div class="carousal-container">
 		<button
-			class="dot-button {index === onScreen ? 'dot-button-selected' : ''}"
+			class="button-style button-left"
 			on:click={() => {
-				if (index !== onScreen) {
-					onScreen = index;
-					emblaApi.scrollTo(index);
+				emblaApi.scrollPrev();
+
+				if (onScreen > 0) {
+					onScreen--;
 				}
 			}}
-		/>
-	{/each}
+			bind:this={buttonElementLeft}>{'<'}</button
+		>
+		<div class="embla" use:emblaCarouselSvelte on:emblaInit={onInit}>
+			<div class="embla__container">
+				<div class="embla__slide"><ProjectSlide /></div>
+				<div class="embla__slide"><ExperienceSlide bind:timeLineAnimation /></div>
+				<div class="embla__slide"><MiscSlide /></div>
+			</div>
+		</div>
+		<button
+			class="button-style button-right"
+			on:click={() => {
+				emblaApi.scrollNext();
+
+				if (onScreen < 2) {
+					onScreen++;
+				}
+			}}>{'>'}</button
+		>
+	</div>
+	<div class="dot-button-container">
+		{#each emblaScreens as screen, index}
+			<button
+				class="dot-button {index === onScreen ? 'dot-button-selected' : ''}"
+				on:click={() => {
+					if (index !== onScreen) {
+						emblaApi.scrollTo(index);
+					}
+				}}
+			/>
+		{/each}
+	</div>
 </div>
 
 <style>
@@ -94,7 +96,7 @@
 	}
 	.embla__slide {
 		flex: 0 0 100%;
-		min-width: 100dvw;
+		min-width: 100%;
 		margin-inline: 5px;
 	}
 
@@ -106,10 +108,15 @@
 	.resume-content {
 		width: 80rem;
 		height: 50rem;
+
+		@media screen and (max-width: 576px) {
+			width: 100dvw;
+			height: 100dvh;
+		}
 	}
 
 	.button-style {
-		position: absolute;
+		position: relative;
 		height: 21rem;
 		border: none;
 		background-color: unset;
@@ -125,23 +132,26 @@
 	}
 
 	.button-left {
-		left: 0px;
+		left: -1.5rem;
+
+		transition:
+			left 100ms linear,
+			opacity 350ms linear,
+			padding 100ms linear;
 	}
 
 	.button-left:hover {
-		left: 0px;
+		left: -1rem;
 		opacity: 1;
-		padding-left: 1.5rem;
 	}
 
 	.button-right:hover {
-		right: 10px;
+		right: -1rem;
 		opacity: 1;
-		padding-right: 1.5rem;
 	}
 
 	.button-right {
-		right: 0px;
+		right: -1.5rem;
 		transition:
 			right 100ms linear,
 			opacity 350ms linear,
@@ -168,6 +178,10 @@
 		column-gap: 0.25rem;
 		display: flex;
 		justify-content: center;
+
+		@media screen and (max-width: 576px) {
+			top: 1rem;
+		}
 	}
 
 	.resume-button {

@@ -32,7 +32,7 @@
 
 <style>
 	.section-container {
-		padding-inline: 5rem;
 		padding-bottom: 2rem;
+		padding-left: 0.5rem;
 	}
 </style>

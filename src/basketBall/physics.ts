@@ -89,7 +89,8 @@ export const createPoleCantilever = (
 	prevBody: b2Body,
 	world: b2World,
 	baseWidth: number,
-	baseHeight: number
+	baseHeight: number,
+	positionX: number
 ) => {
 	const jd = new b2WeldJointDef();
 
@@ -107,12 +108,12 @@ export const createPoleCantilever = (
 		// Add it to the stage to render
 		const body = world.CreateBody({
 			type: b2BodyType.b2_dynamicBody,
-			position: { x: 7, y: 1.25 - 0.1 * i }
+			position: { x: positionX, y: 1.25 - 0.1 * i }
 		});
 		body.CreateFixture(fd);
 		Cantilevers.push(body);
 
-		const anchor = new b2Vec2(7, 1.3 - 0.1 * i);
+		const anchor = new b2Vec2(positionX, 1.3 - 0.1 * i);
 		jd.Initialize(prevBody, body, anchor);
 		jd.stiffness = 900;
 		jd.damping = 800;

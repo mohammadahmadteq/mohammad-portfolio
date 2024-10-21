@@ -64,16 +64,17 @@
 
 <style>
 	.intro-padding {
-		padding-inline: 10rem;
 		min-height: 495px;
 	}
 	.intro-section {
 		display: flex;
 		align-items: center;
 	}
+
 	.remove-margin {
 		margin: 0px 0px;
 	}
+
 	.wave-picture {
 		font-size: 20rem;
 	}
@@ -85,6 +86,7 @@
 	}
 	.logo {
 		max-width: 3rem;
+		min-width: 1.5rem;
 		height: 3rem;
 		transition: all 0.1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
 	}
@@ -93,11 +95,15 @@
 		height: 3rem;
 	}
 	.logo:hover {
-		max-width: 6rem;
-		height: 6rem;
+		@media screen and (min-width: 577px) {
+			max-width: 6rem;
+			height: 6rem;
+		}
 	}
 	.logo-node:hover {
-		max-width: 14.6rem;
-		height: 6rem;
+		@media screen and (min-width: 577px) {
+			max-width: 14.6rem;
+			height: 6rem;
+		}
 	}
 </style>

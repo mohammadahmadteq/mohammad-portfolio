@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount, tick } from 'svelte';
 
 	import type { b2StepConfig } from '@box2d/core/dist/dynamics/b2_time_step';
 
@@ -36,7 +36,7 @@
 
 	const scale = 256;
 
-	onMount(async () => {
+	const initializeBasketBall = async () => {
 		const world = createSimulation({
 			x: 0,
 			y: 10
@@ -57,6 +57,11 @@
 				height: 0.3 //Meters
 			};
 
+			const cantileverPosition =
+				window.screen.width <= 576
+					? (canvasContainer.clientWidth - 30) / scale
+					: (canvasContainer.clientWidth - 80) / scale;
+
 			const wallsBody = createWalls(
 				canvasContainer.clientWidth / scale,
 				canvasContainer.clientHeight / scale,
@@ -65,9 +70,20 @@
 			const groundBody = createGround(groundSize.width, groundSize.height, world);
 			const originBody = createOriginBody(world);
 			const basketBallBody = createBall(basketBallSize.radius, world);
-			const Cantilevers = createPoleCantilever(10, originBody, world, 0.05, 0.1);
+			const Cantilevers = createPoleCantilever(
+				10,
+				originBody,
+				world,
+				0.05,
+				0.1,
+				cantileverPosition
+			);
 
 			graphicsEngine = await createGraphicsEngine(canvasContainer);
+			if (canvasContainer.childNodes.length > 0) {
+				canvasContainer.innerHTML = '';
+			}
+			await tick();
 			canvasContainer.appendChild(graphicsEngine.canvas);
 
 			const basketBallSprite = await createBallSprite(scale, basketBallSize, graphicsEngine);
@@ -158,9 +174,18 @@
 				//--------------------------------------------------------------------
 			});
 		}
+	};
+
+	const resizeCanvas = async () => {
+		await initializeBasketBall();
+	};
+
+	onMount(async () => {
+		await initializeBasketBall();
 	});
 </script>
 
+<svelte:window on:resize={resizeCanvas} />
 <div bind:this={canvasContainer} style="width: 100%; height: 350px;"></div>
 
 <style>

@@ -99,7 +99,7 @@
 			<div style="max-width: 4.5rem">
 				<svelte:component this={experience.company} />
 			</div>
-			<div style="margin-bottom: 0.25rem;">{experience.designation}</div>
+			<div style="margin-bottom: 0.25rem; ">{experience.designation}</div>
 			<div
 				class="experience-circle"
 				style="width: {index === 0 ? '1.5rem' : '1rem'}; height:{index === 0 ? '1.5rem' : '1rem'}"

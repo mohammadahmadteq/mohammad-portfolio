@@ -14,14 +14,24 @@
 
 body {
 	margin: 0px;
+
+	@media screen and (max-width: 576px) {
+		width: 100dvw;
+	}
 }
 
 h1 {
 	font-size: 10rem;
+	@media screen and (max-width: 576px) {
+		font-size: 6rem;
+	}
 }
 
 h2 {
 	font-size: 4rem;
+	@media screen and (max-width: 576px) {
+		font-size: 3.5rem;
+	}
 }
 
 h3 {

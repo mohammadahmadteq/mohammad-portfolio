@@ -51,11 +51,16 @@
 
 <style>
 	.project-container {
-		padding: 0rem 5rem;
+		padding-right: 0.5rem;
 	}
 	.project-flex {
 		display: flex;
 		justify-content: space-between;
+
+		@media screen and (max-width: 576px) {
+			flex-wrap: wrap;
+			row-gap: 1rem;
+		}
 	}
 
 	.project-card {
@@ -68,6 +73,10 @@
 			box-shadow 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 		filter: drop-shadow(10, 100, 100);
 		box-shadow: 7px 13px 28px -13px rgba(0, 0, 0, 0.1);
+
+		@media screen and (max-width: 576px) {
+			flex-basis: 38%;
+		}
 	}
 
 	.project-card:hover {
