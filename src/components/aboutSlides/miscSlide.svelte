@@ -10,7 +10,13 @@
 	<div class="misc-flex">
 		<div>
 			<div class="misc-bullets">I like science, especially solid state chemistry!</div>
-			<div class="misc-bullets">I do digital art follow my instagram: @mamber2403</div>
+			<div class="misc-bullets">
+				I do digital art follow my instagram: <a
+					href="https://www.instagram.com/mamber2403/"
+					target="_blank"
+					class="ig-text">@mamber2403</a
+				>
+			</div>
 		</div>
 
 		<div class="misc-icons-container">
@@ -82,5 +88,22 @@
 			max-width: 80vw;
 			margin-top: 2rem;
 		}
+	}
+
+	/* Base styles for your text element */
+	.ig-text {
+		color: black;
+		cursor: pointer;
+		text-decoration: none;
+	}
+
+	/* Hover effect with Instagram-like gradient on text */
+	.ig-text:hover {
+		background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		-moz-background-clip: text;
+		-moz-text-fill-color: transparent;
+		background-clip: text;
 	}
 </style>

@@ -3,22 +3,22 @@
 
 	const projectsList = [
 		{
-			imageUrl: 'img',
+			imageUrl: 'src/assets/images/projects/FCH.png',
 			name: 'First Class Healthcare',
 			tech: 'Next + Express'
 		},
 		{
-			imageUrl: 'img',
+			imageUrl: 'src/assets/images/projects/DTUCA.png',
 			name: 'DriveThru Urgent Care Admin',
 			tech: 'Next + Express'
 		},
 		{
-			imageUrl: 'img',
+			imageUrl: 'src/assets/images/projects/DTUCP.png',
 			name: 'DriveThru Urgent Care Patient',
 			tech: 'Next + Express'
 		},
 		{
-			imageUrl: 'img',
+			imageUrl: 'src/assets/images/projects/PT.png',
 			name: 'Prospecting Tool',
 			tech: 'React + Express'
 		},
@@ -38,7 +38,7 @@
 			<div class="project-card">
 				<div class="project-image">
 					<Lightbox description={proj.name}>
-						<img src={proj.imageUrl} alt={proj.name} width="100%" />
+						<img src={proj.imageUrl} alt={proj.name} width="100%" height="" />
 					</Lightbox>
 				</div>
 

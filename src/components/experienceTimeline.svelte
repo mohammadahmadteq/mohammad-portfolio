@@ -138,6 +138,5 @@
 		width: 0px;
 		background-color: var(--color-text);
 		border-radius: 1rem;
-		max-width: 100%;
 	}
 </style>

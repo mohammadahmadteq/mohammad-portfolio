@@ -11,6 +11,7 @@
 	let onScreen = 0;
 
 	function playAnimation(emblaApi: EmblaCarouselType) {
+		console.log(emblaApi.slidesInView().join(''));
 		timeLineAnimation(emblaApi.slidesInView().join('') !== '1');
 		emblaApi.scrollProgress();
 
@@ -31,8 +32,7 @@
 </script>
 
 <Modal bind:showModal>
-	<iframe class="resume-content" title="Resume" src="src/assets/Ashraf_Abdullah_20240722190645.pdf">
-	</iframe>
+	<iframe class="resume-content" title="Resume" src="src/assets/Mohammad Ahmad CV.pdf"> </iframe>
 </Modal>
 
 <div style="width: 100%">
