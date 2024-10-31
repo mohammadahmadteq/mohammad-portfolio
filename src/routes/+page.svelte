@@ -15,7 +15,7 @@
 </div>
 
 <div class="section-flex">
-	<div class="section" style="margin-block: 2rem;">
+	<div class="section about" style="margin-block: 2rem;">
 		<AboutSection />
 	</div>
 </div>
@@ -27,7 +27,7 @@
 	.section-flex {
 		display: flex;
 		justify-content: center;
-
+		overflow-x: hidden;
 		@media screen and (max-width: 576px) {
 			display: block;
 			justify-content: unset;
@@ -40,6 +40,13 @@
 
 		@media screen and (max-width: 576px) {
 			padding-inline: 1.75rem;
+			max-width: unset;
+		}
+	}
+
+	.about {
+		@media screen and (max-width: 576px) {
+			padding-inline: unset;
 			max-width: unset;
 		}
 	}

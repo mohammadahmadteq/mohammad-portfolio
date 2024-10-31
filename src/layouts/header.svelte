@@ -26,5 +26,7 @@
 		align-items: center;
 
 		padding: 8px 16px;
+
+		z-index: 2;
 	}
 </style>

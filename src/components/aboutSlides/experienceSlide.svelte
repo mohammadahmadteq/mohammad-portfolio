@@ -49,7 +49,7 @@
 		width: 100%;
 		max-width: 18rem;
 		transform: translateX(-10rem) rotate(25deg);
-		height: 80px;
+		height: 5rem;
 
 		@media screen and (max-width: 1200px) {
 			width: 100%;
@@ -73,6 +73,10 @@
 
 		@media screen and (max-width: 769px) {
 			width: 650px;
+		}
+
+		@media screen and (max-width: 576px) {
+			width: fit-content;
 		}
 	}
 </style>
