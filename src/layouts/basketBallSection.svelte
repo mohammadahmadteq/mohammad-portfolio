@@ -49,7 +49,7 @@
 
 			const groundSize = {
 				width: canvasContainer.clientWidth / scale, //Meters
-				height: 0.2 //Meters
+				height: 0.25 //Meters
 			};
 
 			const hoopSize = {

@@ -53,7 +53,7 @@ export const createGroundGraphics: TCreateGraphic = (scale, groundSize, graphics
 	const groundObject = new Graphics()
 		.rect(0, 0, groundSize.width * scale, groundSize.height * scale)
 		.fill({
-			color: 'blue'
+			color: '#575a8a'
 		});
 	groundObject.pivot.set(groundObject.width / 2, groundObject.height / 2);
 	graphicsEngine.stage.addChild(groundObject);
@@ -113,7 +113,7 @@ export const createPoleCantileverGraphics: TCreateGraphicsArray = (
 				cantileverBaseSize.height * scale
 			)
 			.fill({
-				color: 'red'
+				color: '#2e2f44'
 			});
 		cant.pivot.set(cant.width / 2, cant.height / 2);
 		graphicsEngine.stage.addChild(cant);

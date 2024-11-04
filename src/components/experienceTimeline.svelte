@@ -269,7 +269,7 @@
 
 	.experience-circle {
 		border-radius: 100%;
-		background-color: var(--color-text);
+		background-color: var(--color-primary-a70);
 	}
 
 	.experience-text-container {
@@ -290,7 +290,7 @@
 	.timeline-line {
 		height: 0.5rem;
 		width: 0px;
-		background-color: var(--color-text);
+		background-color: var(--color-primary-a70);
 		border-radius: 1rem;
 
 		@media screen and (max-width: 576px) {

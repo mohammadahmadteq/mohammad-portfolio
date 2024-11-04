@@ -158,7 +158,7 @@
 	}
 
 	.dot-button {
-		border: 2px solid black;
+		border: 2px solid var(--color-primary-a70);
 		border-radius: 100%;
 		cursor: pointer;
 		background-color: nones;
@@ -167,7 +167,7 @@
 	}
 
 	.dot-button-selected {
-		background-color: black;
+		background-color: var(--color-primary-a70);
 	}
 
 	.dot-button-container {

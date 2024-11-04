@@ -108,7 +108,7 @@ export const createPoleCantilever = (
 		// Add it to the stage to render
 		const body = world.CreateBody({
 			type: b2BodyType.b2_dynamicBody,
-			position: { x: positionX, y: 1.25 - 0.1 * i }
+			position: { x: positionX, y: 1.24 - 0.09 * i }
 		});
 		body.CreateFixture(fd);
 		Cantilevers.push(body);

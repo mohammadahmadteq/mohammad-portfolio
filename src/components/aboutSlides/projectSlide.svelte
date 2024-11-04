@@ -65,6 +65,7 @@
 
 	.project-card {
 		border-radius: 0.5rem;
+		border: 1px solid var(--color-primary-a10);
 		padding: 1rem;
 		flex-basis: 15%;
 		background-color: white;
