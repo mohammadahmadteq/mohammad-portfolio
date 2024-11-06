@@ -86,7 +86,7 @@ export const createGraphicsEngine = async (canvasContainer: Element) => {
 };
 
 export const createScoreText = (points: number, graphicsEngine: Application<Renderer>) => {
-	const scoreText = new Text({ text: `Score: ${points}` });
+	const scoreText = new Text({ text: `Score: ${points}`, style: { fill: '#575a8a' } });
 	scoreText.x = 50; // X position IN PIXELS
 	scoreText.y = 50; // Y position IN PIXELS
 	graphicsEngine.stage.addChild(scoreText);
