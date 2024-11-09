@@ -3,14 +3,20 @@
 	import Instagram from '@components/socialMediaIcons/instagram.svelte';
 	import Linkedin from '@components/socialMediaIcons/linkedin.svelte';
 	import Xwitter from '@components/socialMediaIcons/xwitter.svelte';
+
+	let email = 'mahmad2403@gmail.com';
+	let subject = 'Hello! Lets chat about your Apllication!';
+	const sendEmail = () => {
+		const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
+		window.open(mailtoLink);
+	};
 </script>
 
 <div class="header">
 	<Github />
 	<Instagram />
 	<Linkedin />
-	<Xwitter />
-	<button class="big-round-button">Get in Touch!</button>
+	<button class="big-round-button" on:click={sendEmail}>Get in Touch!</button>
 </div>
 
 <style>
