@@ -31,7 +31,7 @@
 </script>
 
 <Modal bind:showModal>
-	<iframe class="resume-content" title="Resume" src="static/assets/Mohammad Ahmad CV.pdf"> </iframe>
+	<iframe class="resume-content" title="Resume" src="./Mohammad Ahmad CV.pdf"> </iframe>
 </Modal>
 
 <button
@@ -180,6 +180,12 @@
 
 		@media screen and (max-width: 576px) {
 			top: 1rem;
+		}
+	}
+
+	.resume-button {
+		@media screen and (max-width: 576px) {
+			display: none;
 		}
 	}
 </style>

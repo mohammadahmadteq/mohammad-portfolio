@@ -3,27 +3,27 @@
 
 	const projectsList = [
 		{
-			imageUrl: 'static/assets/images/projects/FCH.png',
+			imageUrl: './assets/images/projects/FCH.png',
 			name: 'First Class Healthcare',
 			tech: 'Next + Express'
 		},
 		{
-			imageUrl: 'static/assets/images/projects/DTUCA.png',
+			imageUrl: './assets/images/projects/DTUCA.png',
 			name: 'DriveThru Urgent Care Admin',
 			tech: 'Next + Express'
 		},
 		{
-			imageUrl: 'static/assets/images/projects/DTUCP.png',
+			imageUrl: './assets/images/projects/DTUCP.png',
 			name: 'DriveThru Urgent Care Patient',
 			tech: 'Next + Express'
 		},
 		{
-			imageUrl: 'static/assets/images/projects/PT.png',
+			imageUrl: './assets/images/projects/PT.png',
 			name: 'Prospecting Tool',
 			tech: 'React + Express'
 		},
 		{
-			imageUrl: 'static/assets/images/projects/Carbonteq.png',
+			imageUrl: './assets/images/projects/Carbonteq.png',
 			name: 'Carbonteq.com',
 			tech: 'Webflow'
 		}

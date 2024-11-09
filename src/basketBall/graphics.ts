@@ -32,7 +32,7 @@ type TCreateGraphicsArray = (
 	numberOfSegments: number
 ) => Graphics[];
 export const createBallSprite: TCreateSprite = async (scale, size, graphicsEngine) => {
-	const texture = await Assets.load('static/assets/sprites/basketBall.png');
+	const texture = await Assets.load('./assets/sprites/basketBall.png');
 
 	if (!size.radius) {
 		throw new Error('Radius is undefined');
@@ -65,7 +65,7 @@ export const createHoopSprite: TCreateSprite = async (scale, hoopSize, graphicsE
 		throw new Error('Radius is undefined');
 	}
 
-	const textureHoop = await Assets.load('static/assets/sprites/hoop.png');
+	const textureHoop = await Assets.load('./assets/sprites/hoop.png');
 	const hoop = new Sprite(textureHoop);
 
 	hoop.width = hoopSize.width * scale;
