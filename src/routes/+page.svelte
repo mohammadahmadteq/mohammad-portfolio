@@ -5,7 +5,6 @@
 	import BasketBallSection from '@layouts/basketBallSection.svelte';
 	import Header from '@layouts/header.svelte';
 	import { onMount } from 'svelte';
-	export const prerender = true;
 
 	const squaresCount = 64;
 	let squares: { top: number; delay: number; side: string; speed: number; size: number }[];
