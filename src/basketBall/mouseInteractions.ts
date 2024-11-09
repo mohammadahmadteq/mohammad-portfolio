@@ -67,7 +67,7 @@ export function onPointerMove(event: FederatedPointerEvent, scale: number) {
 }
 
 export function onPointerUp(event: FederatedPointerEvent, world: b2World) {
-	if (mouseJoint) {
+	if (event && mouseJoint) {
 		world.DestroyJoint(mouseJoint);
 		mouseJoint = null;
 	}

@@ -12,6 +12,7 @@
 	--color-primary-a80: #2e2f44;
 	--color-primary-a90: #1a1b24;
 	--color-primary-a100: #000000;
+
 	font-size: 16px;
 	text-rendering: optimizeLegibility;
 	font-family: 'Manrope-Variable';
@@ -19,7 +20,7 @@
 	--color-text: var(--color-primary-a90);
 	--color-highlight: var(--color-primary-a50);
 	background-color: var(--color-bg);
-	color: var(--color-text);
+	color: var(--color-primary-a80);
 	--tooltip-font-family: 'Manrope-Variable' !important;
 }
 

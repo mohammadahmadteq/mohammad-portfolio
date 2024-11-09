@@ -7,6 +7,7 @@
 	height="auto"
 	viewBox="0 0 413.844 413.844"
 	xml:space="preserve"
+	fill="#578a86"
 >
 	<g>
 		<g>

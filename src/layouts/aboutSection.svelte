@@ -26,12 +26,12 @@
 
 	let showModal = false;
 
-	let timeLineAnimation: any;
+	let timeLineAnimation: (isReset?: boolean) => void;
 	let buttonElementLeft: Element;
 </script>
 
 <Modal bind:showModal>
-	<iframe class="resume-content" title="Resume" src="src/assets/Mohammad Ahmad CV.pdf"> </iframe>
+	<iframe class="resume-content" title="Resume" src="static/assets/Mohammad Ahmad CV.pdf"> </iframe>
 </Modal>
 
 <button
@@ -96,7 +96,7 @@
 	}
 	.embla__slide {
 		flex: 0 0 100%;
-		margin-inline: 5px;
+		margin-inline: 0.3125rem;
 	}
 
 	.carousal-container {
@@ -158,7 +158,7 @@
 	}
 
 	.dot-button {
-		border: 2px solid var(--color-primary-a70);
+		border: 0.125rem solid var(--color-primary-a70);
 		border-radius: 100%;
 		cursor: pointer;
 		background-color: nones;
@@ -181,8 +181,5 @@
 		@media screen and (max-width: 576px) {
 			top: 1rem;
 		}
-	}
-
-	.resume-button {
 	}
 </style>

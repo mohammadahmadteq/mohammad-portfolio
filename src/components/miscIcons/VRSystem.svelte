@@ -7,6 +7,7 @@
 	xmlns:xlink="http://www.w3.org/1999/xlink"
 	viewBox="0 0 32 32"
 	xml:space="preserve"
+	fill="#8a577d"
 >
 	<g>
 		<path

@@ -6,21 +6,19 @@
 	import Header from '@layouts/header.svelte';
 	import { onMount } from 'svelte';
 
-	// Parameters for square animation
 	const squaresCount = 64;
-	let squares: any[];
+	let squares: { top: number; delay: number; side: string; speed: number; size: number }[];
 
-	// Function to create initial squares with random positions and delays
 	function createSquares() {
 		const new_squares = [];
 
 		for (let i = 0; i < squaresCount; i++) {
 			const size = getSquareSizeForBg() / 16;
 			new_squares.push({
-				top: Math.random() * 100, // Random vertical position
-				delay: Math.random() * 5, // Random delay to stagger animations
-				side: Math.random() > 0.5 ? 'left' : 'right', // Random side
-				speed: 3 + Math.random() * 3, // Random speed for variation
+				top: Math.random() * 100,
+				delay: Math.random() * 5,
+				side: Math.random() > 0.5 ? 'left' : 'right',
+				speed: 3 + Math.random() * 3,
 				size: size
 			});
 		}
@@ -29,24 +27,56 @@
 	}
 
 	onMount(() => {
+		window.scrollTo(0, 0);
+
 		createSquares();
+
+		setBodyFontSize();
 	});
 
 	const getSquareSizeForBg = () => {
 		const number = Math.round(Math.random() * 30);
-		console.log(number);
 		const size = number > 32 ? 32 : number < 12 ? 12 : number;
 
 		return size;
 	};
 
-	$: console.log(squares);
+	const setBodyFontSize = () => {
+		if (window.screen.width >= 3840) {
+			document.documentElement.style.fontSize = '40px';
+			return;
+		}
+		if (window.screen.width >= 2560) {
+			document.documentElement.style.fontSize = '20px';
+			return;
+		}
+		if (window.screen.width >= 1440) {
+			document.documentElement.style.fontSize = '16px';
+			return;
+		}
+
+		if (window.screen.width <= 1440) {
+			document.documentElement.style.fontSize = '10px';
+			return;
+		}
+	};
+
+	let scrollBasket: Element;
 </script>
 
 <Header />
 
+<svelte:window on:resize={setBodyFontSize} />
+
 <div class="section-flex">
 	<div class="section">
+		<button
+			class="hoops-button"
+			on:click={() => {
+				scrollBasket.scrollIntoView({ behavior: 'smooth' });
+			}}>Try Hoops!</button
+		>
+
 		<IntroSection />
 	</div>
 </div>
@@ -57,10 +87,9 @@
 	</div>
 </div>
 
-<div class="section" style="margin-block: 2rem;" />
+<div class="section" bind:this={scrollBasket} style="margin-block: 2rem;" />
 <BasketBallSection />
 
-<!-- Squares rendering -->
 <div class="animated-background">
 	{#each squares ?? [] as square (square.top)}
 		<div
@@ -82,20 +111,23 @@
 		justify-content: center;
 		overflow-x: hidden;
 
-		height: 95dvh;
+		min-height: 95dvh;
 		align-items: center;
 		@media screen and (max-width: 576px) {
 			display: block;
 			justify-content: unset;
+			min-height: unset;
 		}
 	}
 	.section {
-		max-width: 1440px;
+		max-width: 90rem;
 		width: 100%;
 		padding-inline: 5rem;
 
 		@media screen and (max-width: 576px) {
 			padding-inline: 1.75rem;
+			width: unset;
+
 			max-width: unset;
 		}
 	}
@@ -124,7 +156,6 @@
 		z-index: -1;
 	}
 
-	/* Left side animation */
 	@keyframes moveFromLeft {
 		0% {
 			transform: translateX(0);
@@ -139,7 +170,6 @@
 		}
 	}
 
-	/* Right side animation */
 	@keyframes moveFromRight {
 		0% {
 			transform: translateX(0);
@@ -162,5 +192,38 @@
 	.right {
 		animation: moveFromRight linear infinite;
 		right: -50px;
+	}
+
+	.hoops-button {
+		background-color: #bd6381;
+		color: var(--color-primary-a0);
+		border: none;
+		padding: 0.8rem 1.5rem;
+		font-size: 1rem;
+		font-weight: bold;
+		text-transform: uppercase;
+		cursor: pointer;
+		border-radius: 0, 5rem;
+		transition: all 0.3s ease;
+		box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+		outline: none;
+		display: inline-block;
+		animation: pulse 1.5s infinite;
+	}
+
+	.hoops-button:hover {
+		background-color: #ac5776;
+		color: var(--color-primary-a10);
+		box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+	}
+
+	@keyframes pulse {
+		0%,
+		100% {
+			transform: scale(1);
+		}
+		50% {
+			transform: scale(1.05);
+		}
 	}
 </style>

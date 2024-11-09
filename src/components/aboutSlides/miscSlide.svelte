@@ -90,14 +90,12 @@
 		}
 	}
 
-	/* Base styles for your text element */
 	.ig-text {
-		color: black;
+		color: var(--color-primary-a70);
 		cursor: pointer;
 		text-decoration: none;
 	}
 
-	/* Hover effect with Instagram-like gradient on text */
 	.ig-text:hover {
 		background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
 		-webkit-background-clip: text;

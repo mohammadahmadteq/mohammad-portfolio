@@ -23,7 +23,7 @@
 		}
 	];
 
-	export let timeLineAnimation: any;
+	export let timeLineAnimation: (isReset?: boolean) => void;
 </script>
 
 <div class="section-container">
@@ -65,14 +65,14 @@
 	}
 
 	.time-line {
-		width: 800px;
+		width: 50rem;
 
 		@media screen and (max-width: 1200px) {
-			width: 650px;
+			width: 40.6rem;
 		}
 
 		@media screen and (max-width: 769px) {
-			width: 650px;
+			width: 40.6rem;
 		}
 
 		@media screen and (max-width: 576px) {

@@ -18,14 +18,14 @@
 		position: sticky;
 		top: 0;
 
-		column-gap: 10px;
+		column-gap: 0.625rem;
 
 		justify-content: end;
 
 		display: flex;
 		align-items: center;
 
-		padding: 8px 16px;
+		padding: 0.5rem 1rem;
 
 		z-index: 2;
 	}

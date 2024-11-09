@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { timeline, type TimelineDefinition } from 'motion';
+	import { timeline, type TimelineDefinition, type TimelineSegment } from 'motion';
 	import { onMount } from 'svelte';
 	import { elasticInOut } from 'svelte/easing';
 	export let myExperience;
@@ -111,7 +111,6 @@
 
 	export const playAnimationMobile = (isReset?: boolean) => {
 		timelineMarginLeft = `${experienceBinds[0].getBoundingClientRect().top - timelineElement.getBoundingClientRect().top + experienceBinds[0].getBoundingClientRect().height * 0.3}px`;
-		console.log(timelineMarginLeft);
 
 		const completeAnimation: TimelineDefinition = [
 			[
@@ -137,7 +136,7 @@
 						{
 							duration: 0
 						}
-					] as any;
+					] as TimelineSegment;
 				}),
 				[
 					timelineElement,
@@ -159,7 +158,7 @@
 				continue;
 			}
 
-			console.log(getTimeLineLength(experienceBinds[0], experienceBinds[elem]));
+			getTimeLineLength(experienceBinds[0], experienceBinds[elem]);
 
 			completeAnimation.push([
 				timelineElement,
@@ -275,7 +274,7 @@
 	.experience-text-container {
 		position: relative;
 		top: 2.6rem;
-		left: 0.5rem;
+		left: 0rem;
 		display: flex;
 		justify-content: left;
 		gap: 3rem;

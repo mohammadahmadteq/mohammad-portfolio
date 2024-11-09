@@ -186,7 +186,7 @@
 </script>
 
 <svelte:window on:resize={resizeCanvas} />
-<div bind:this={canvasContainer} style="width: 100%; height: 350px;"></div>
+<div bind:this={canvasContainer} style="width: 100%; height: 21.875rem;"></div>
 
 <style>
 </style>

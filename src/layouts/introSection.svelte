@@ -15,54 +15,45 @@
 	import { onMount } from 'svelte';
 	import AmbySmile from '@components/AmbySmile.svelte';
 
-	// Define reactive properties for mouse position
 	let mouseX = 0;
 	let mouseY = 0;
-
-	let leftEyePosition = { x: 0, y: 0 };
-	let rightEyePosition = { x: 0, y: 0 };
 
 	let leftEye: HTMLDivElement;
 	let rightEye: HTMLDivElement;
 
-	// Function to update mouse position
 	const handleMouseMove = (event: { clientX: number; clientY: number }) => {
 		mouseX = event.clientX;
 		mouseY = event.clientY;
 	};
 
-	// Listen for mousemove event
 	onMount(() => {
 		window.addEventListener('mousemove', handleMouseMove);
 		return () => window.removeEventListener('mousemove', handleMouseMove);
 	});
 
-	// Calculate the pupil position based on the cursor location
 	function getPupilTransform(eye: HTMLDivElement, mouseX: number, mouseY: number) {
 		if (eye) {
 			const rect = eye.getBoundingClientRect();
 			const eyeCenterX = rect.left + rect.width / 2;
 			const eyeCenterY = rect.top + rect.height / 2;
 
-			// Calculate the distance from the mouse to the eye center
 			const distanceX = mouseX - eyeCenterX;
 			const distanceY = mouseY - eyeCenterY;
 			const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
 
-			// Set the max radius for pupil movement based on distance
-			const maxRadius = rect.width / 3; // The pupil can move to the edge of the eye
-			const normalizedDistance = Math.min(distance / 100, 1); // Normalize distance to a range [0, 1]
+			const maxRadius = rect.width / 3;
+			const normalizedDistance = Math.min(distance / 100, 1);
 
-			// Calculate pupil position
 			const pupilX = (distanceX / distance) * maxRadius * normalizedDistance;
 			const pupilY = (distanceY / distance) * maxRadius * normalizedDistance;
 
 			return `translate(${pupilX}px, ${pupilY}px)`;
 		}
+		return '';
 	}
 
-	let leftTransform: any = '';
-	let rightTransform: any = '';
+	let leftTransform: string = '';
+	let rightTransform: string = '';
 
 	let isClicked = false;
 
@@ -76,9 +67,14 @@
 			<h1 class="remove-margin">Hello,</h1>
 			<h2 class="remove-margin">I am Mohammad Ahmad!</h2>
 			<h3 class="remove-margin">Software Engineer</h3>
+			<div class="desc-text">
+				I develop high quality clean, plished and stunning web applications, moreover I like to try
+				quirky stuff in the web using stuff like Web Assembly or Rust.
+			</div>
 		</div>
-		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<div
+			role="button"
+			tabindex={100}
 			class="char-container"
 			on:mousedown={() => {
 				isClicked = true;
@@ -87,15 +83,14 @@
 				isClicked = false;
 			}}
 		>
-			{#if !isClicked}
-				<div class="eye-container">
-					<div class="eye" bind:this={leftEye}>
-						<div class="pupil" style="transform: {leftTransform}"></div>
-					</div>
-					<div class="eye" bind:this={rightEye}>
-						<div class="pupil" style="transform: {rightTransform}"></div>
-					</div>
-				</div>{/if}
+			<div class="{isClicked ? 'eye-container-hide' : ''} eye-container">
+				<div class="eye" bind:this={leftEye}>
+					<div class="pupil" style="transform: {leftTransform}"></div>
+				</div>
+				<div class="eye" bind:this={rightEye}>
+					<div class="pupil" style="transform: {rightTransform}"></div>
+				</div>
+			</div>
 
 			{#if !isClicked}
 				<Amby />
@@ -149,28 +144,47 @@
 
 <style>
 	.intro-padding {
-		min-height: 495px;
+		min-height: 25rem;
 	}
 	.intro-section {
 		display: flex;
-		align-items: center;
 		justify-content: space-between;
+		overflow-y: visible;
 	}
 
 	.remove-margin {
 		margin: 0px 0px;
 	}
 
+	.desc-text {
+		margin-top: 0.5rem;
+		font-size: 1.25rem;
+
+		@media screen and (max-width: 576px) {
+			margin-bottom: 1rem;
+		}
+	}
+
 	.char-container {
 		flex-shrink: 0;
 		flex-grow: 0;
 		width: 40rem;
+
+		@media screen and (max-width: 991px) {
+			display: none;
+		}
 	}
 	.logo-container {
+		position: absolute;
 		display: flex;
-		width: 100%;
 		column-gap: 0.75rem;
 		margin-top: 1rem;
+
+		@media screen and (max-width: 576px) {
+			position: static;
+			flex-wrap: wrap;
+			row-gap: 1rem;
+		}
 	}
 	.logo {
 		max-width: 3rem;
@@ -199,9 +213,13 @@
 		display: flex;
 		gap: 3.5rem;
 		position: relative;
-		top: 350px;
-		left: 220px;
-		margin-top: -70px;
+		top: 19rem;
+		left: 13.75rem;
+		margin-top: -10rem;
+	}
+
+	.eye-container-hide {
+		visibility: hidden;
 	}
 
 	.eye {

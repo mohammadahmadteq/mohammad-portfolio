@@ -3,27 +3,27 @@
 
 	const projectsList = [
 		{
-			imageUrl: 'src/assets/images/projects/FCH.png',
+			imageUrl: 'static/assets/images/projects/FCH.png',
 			name: 'First Class Healthcare',
 			tech: 'Next + Express'
 		},
 		{
-			imageUrl: 'src/assets/images/projects/DTUCA.png',
+			imageUrl: 'static/assets/images/projects/DTUCA.png',
 			name: 'DriveThru Urgent Care Admin',
 			tech: 'Next + Express'
 		},
 		{
-			imageUrl: 'src/assets/images/projects/DTUCP.png',
+			imageUrl: 'static/assets/images/projects/DTUCP.png',
 			name: 'DriveThru Urgent Care Patient',
 			tech: 'Next + Express'
 		},
 		{
-			imageUrl: 'src/assets/images/projects/PT.png',
+			imageUrl: 'static/assets/images/projects/PT.png',
 			name: 'Prospecting Tool',
 			tech: 'React + Express'
 		},
 		{
-			imageUrl: 'src/assets/images/projects/Carbonteq.png',
+			imageUrl: 'static/assets/images/projects/Carbonteq.png',
 			name: 'Carbonteq.com',
 			tech: 'Webflow'
 		}
@@ -73,7 +73,7 @@
 			transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275),
 			box-shadow 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 		filter: drop-shadow(10, 100, 100);
-		box-shadow: 7px 13px 28px -13px rgba(0, 0, 0, 0.1);
+		box-shadow: 0.5rem 0.875rem 1.75rem -0.875rem rgba(0, 0, 0, 0.1);
 
 		@media screen and (max-width: 576px) {
 			flex-basis: 38%;
@@ -81,10 +81,9 @@
 	}
 
 	.project-card:hover {
-		transform: translateY(-20px);
-		box-shadow: 5px 36px 37px -11px rgba(0, 0, 0, 0.1);
+		transform: translateY(-1.25rem);
+		box-shadow: 0.3125rem 2.25rem 2.25rem -0.6875rem rgba(0, 0, 0, 0.1);
 	}
-
 	.project-image {
 		width: 100%;
 	}
