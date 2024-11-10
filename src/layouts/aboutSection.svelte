@@ -5,10 +5,13 @@
 	import ProjectSlide from '@components/aboutSlides/projectSlide.svelte';
 	import Modal from '@components/common/modal.svelte';
 	import MiscSlide from '@components/aboutSlides/miscSlide.svelte';
+	import { onMount } from 'svelte';
 
 	let emblaApi: EmblaCarouselType;
 	let emblaScreens: number[] = [];
 	let onScreen = 0;
+
+	let isMobile: boolean;
 
 	function playAnimation(emblaApi: EmblaCarouselType) {
 		timeLineAnimation(emblaApi.slidesInView().join('') !== '1');
@@ -28,20 +31,30 @@
 
 	let timeLineAnimation: (isReset?: boolean) => void;
 	let buttonElementLeft: Element;
+
+	onMount(() => {
+		const userAgent = navigator.userAgent;
+		if (/android/i.test(userAgent) || /iphone/i.test(userAgent)) {
+			isMobile = true;
+		}
+	});
 </script>
 
 <Modal bind:showModal>
 	<iframe class="resume-content" title="Resume" src="./Mohammad Ahmad CV.pdf"> </iframe>
 </Modal>
 
-<button
-	class="big-round-button resume-button"
-	on:click={() => {
-		showModal = true;
-	}}
->
-	View Resume
-</button>
+{#if !isMobile}
+	<button
+		class="big-round-button resume-button"
+		on:click={() => {
+			showModal = true;
+		}}
+	>
+		View Resume
+	</button>
+{/if}
+
 <div class="carousal-container">
 	<button
 		class="button-style button-left"
