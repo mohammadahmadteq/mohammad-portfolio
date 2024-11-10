@@ -27,6 +27,8 @@
 
 	let points = 0;
 
+	let isClick: boolean;
+
 	// Time step and frame rate
 	const timeStep = 1 / 120;
 	const stepConfig: b2StepConfig = {
@@ -101,12 +103,19 @@
 			);
 
 			if (graphicsEngine) {
-				graphicsEngine.stage.on('pointerdown', event =>
-					onPointerDown(event, world, originBody, scale)
-				);
+				graphicsEngine.stage.on('pointerdown', event => {
+					onPointerDown(event, world, originBody, scale);
+					isClick = true;
+				});
 				graphicsEngine.stage.on('pointermove', event => onPointerMove(event, scale));
-				graphicsEngine.stage.on('pointerup', event => onPointerUp(event, world));
-				graphicsEngine.stage.on('pointerupoutside', event => onPointerUp(event, world)); // Handle pointer up outside canvas
+				graphicsEngine.stage.on('pointerup', event => {
+					onPointerUp(event, world);
+					isClick = false;
+				});
+				graphicsEngine.stage.on('pointerupoutside', event => {
+					onPointerUp(event, world);
+					isClick = false;
+				}); // Handle pointer up outside canvas
 				graphicsEngine.stage.interactive = true;
 				graphicsEngine.stage.hitArea = graphicsEngine.screen;
 			}
@@ -167,7 +176,7 @@
 					oneSixthHeight
 				);
 
-				if (hitTestRectangle(basketBallBounds, topOneSixthBounds2)) {
+				if (hitTestRectangle(basketBallBounds, topOneSixthBounds2) && !isClick) {
 					points++;
 					scoreText.text = `Score: ${points}`;
 				}
@@ -181,6 +190,10 @@
 	};
 
 	onMount(async () => {
+		const ua = navigator.userAgent;
+		if (/Android/.test(ua) || /iPhone|iPad|iPod/.test(ua)) {
+			return;
+		}
 		await initializeBasketBall();
 	});
 </script>

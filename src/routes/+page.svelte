@@ -60,6 +60,11 @@
 			return;
 		}
 
+		if (window.screen.width <= 400) {
+			document.documentElement.style.fontSize = '14px';
+			return;
+		}
+
 		if (window.screen.width <= 1440) {
 			document.documentElement.style.fontSize = '10px';
 			return;
