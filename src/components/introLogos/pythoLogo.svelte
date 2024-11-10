@@ -1,8 +1,8 @@
 <svg
 	width="100%"
-	height="auto"
 	viewBox="0 0 256 255"
 	xmlns="http://www.w3.org/2000/svg"
+	style="height: auto; max-height: 100%;"
 	preserveAspectRatio="xMinYMin meet"
 	><defs
 		><linearGradient x1="12.959%" y1="12.039%" x2="79.639%" y2="78.201%" id="a"

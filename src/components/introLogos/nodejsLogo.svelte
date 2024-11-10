@@ -1,8 +1,8 @@
 <svg
 	xmlns="http://www.w3.org/2000/svg"
 	width="100%"
-	height="auto"
 	viewBox="0 0 120 70"
+	style="height: auto; max-height: 100%;"
 	preserveAspectRatio="xMidYMid"
 	><g transform="matrix(.217946 0 0 .217946 4.120542 14.085548)"
 		><path

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount, tick } from 'svelte';
+	import { onDestroy, onMount, tick } from 'svelte';
 
 	import type { b2StepConfig } from '@box2d/core/dist/dynamics/b2_time_step';
 
@@ -22,6 +22,7 @@
 		createWalls
 	} from '../basketBall/physics';
 
+	export let fontSize: number;
 	let canvasContainer: Element | null = null;
 	let graphicsEngine: Application<Renderer> | null = null;
 
@@ -36,9 +37,17 @@
 		positionIterations: 6
 	};
 
-	const scale = 256;
+	const baseScale = 256;
 
-	const initializeBasketBall = async () => {
+	const initializeBasketBall = async (fontSize: number) => {
+		if (graphicsEngine) {
+			graphicsEngine.destroy(true);
+			graphicsEngine = null;
+		}
+		if (canvasContainer && canvasContainer.childNodes.length > 0) {
+			canvasContainer.innerHTML = ''; // Clear the container to prevent buildup of child nodes
+		}
+		const scale = baseScale * (fontSize / 16);
 		const world = createSimulation({
 			x: 0,
 			y: 10
@@ -185,17 +194,28 @@
 		}
 	};
 
+	let prevWidth: number;
+
 	const resizeCanvas = async () => {
-		await initializeBasketBall();
+		const width = window.innerWidth;
+		if (width !== prevWidth) {
+			await initializeBasketBall(fontSize);
+		}
 	};
 
 	onMount(async () => {
-		const ua = navigator.userAgent;
-		if (/Android/.test(ua) || /iPhone|iPad|iPod/.test(ua)) {
-			return;
-		}
-		await initializeBasketBall();
+		prevWidth = window.innerWidth;
 	});
+
+	onDestroy(async () => {
+		if (graphicsEngine) {
+			graphicsEngine.destroy(true);
+			graphicsEngine = null;
+		}
+		canvasContainer = null;
+	});
+
+	$: initializeBasketBall(fontSize);
 </script>
 
 <svelte:window on:resize={resizeCanvas} />

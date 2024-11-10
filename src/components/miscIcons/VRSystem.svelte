@@ -1,5 +1,5 @@
 <svg
-	height="auto"
+	style="height: auto; max-height: 100%;"
 	width="100%"
 	version="1.1"
 	id="Icons"

@@ -2,7 +2,7 @@
 	version="1.1"
 	id="svg1"
 	width="100%"
-	height="auto"
+	style="height: auto !important; max-height: 100%;"
 	viewBox="0 0 1080 1080"
 	xmlns="http://www.w3.org/2000/svg"
 >

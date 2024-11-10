@@ -4,7 +4,7 @@
 	xmlns="http://www.w3.org/2000/svg"
 	xmlns:xlink="http://www.w3.org/1999/xlink"
 	width="100%"
-	height="auto"
+	style="height: auto; max-height: 100%;"
 	viewBox="0 0 413.844 413.844"
 	xml:space="preserve"
 	fill="#578a86"

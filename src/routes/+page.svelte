@@ -9,6 +9,8 @@
 	const squaresCount = 64;
 	let squares: { top: number; delay: number; side: string; speed: number; size: number }[];
 
+	let fontSize: number;
+	let prevScreenWidth: number;
 	function createSquares() {
 		const new_squares = [];
 
@@ -43,35 +45,45 @@
 
 	const setBodyFontSize = () => {
 		if (window.screen.width >= 3840) {
+			fontSize = 40;
 			document.documentElement.style.fontSize = '40px';
 			return;
 		}
 		if (window.screen.width >= 2560) {
+			fontSize = 20;
 			document.documentElement.style.fontSize = '20px';
 			return;
 		}
 		if (window.screen.width >= 1440) {
-			document.documentElement.style.fontSize = '16px';
-			return;
-		}
-
-		if (window.screen.width <= 576) {
+			fontSize = 16;
 			document.documentElement.style.fontSize = '16px';
 			return;
 		}
 
 		if (window.screen.width <= 400) {
+			fontSize = 14;
 			document.documentElement.style.fontSize = '14px';
 			return;
 		}
 
+		if (window.screen.width <= 576) {
+			fontSize = 16;
+			document.documentElement.style.fontSize = '16px';
+			return;
+		}
+
 		if (window.screen.width <= 1440) {
+			fontSize = 10;
 			document.documentElement.style.fontSize = '10px';
 			return;
 		}
 	};
 
 	let scrollBasket: Element;
+
+	onMount(() => {
+		setBodyFontSize();
+	});
 </script>
 
 <Header />
@@ -98,7 +110,7 @@
 </div>
 
 <div class="section" bind:this={scrollBasket} style="margin-block: 2rem;" />
-<BasketBallSection />
+<BasketBallSection {fontSize} />
 
 <div class="animated-background">
 	{#each squares ?? [] as square (square.top)}
