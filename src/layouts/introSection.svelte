@@ -68,7 +68,7 @@
 			<h2 class="remove-margin">I am Mohammad Ahmad!</h2>
 			<h3 class="remove-margin">Software Engineer</h3>
 			<div class="desc-text">
-				I develop high quality clean, plished and stunning web applications, moreover I like to try
+				I develop high quality clean, polished and stunning web applications, moreover I like to try
 				quirky stuff in the web using stuff like Web Assembly or Rust.
 			</div>
 		</div>

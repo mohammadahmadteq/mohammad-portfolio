@@ -200,5 +200,7 @@
 		@media screen and (max-width: 576px) {
 			display: none;
 		}
+
+		margin-left: 1rem;
 	}
 </style>
