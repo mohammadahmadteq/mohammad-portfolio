@@ -46,11 +46,12 @@
 
 {#if !isMobile}
 	<button
-		class="big-round-button resume-button"
+		class="genie-button resume-button"
 		on:click={() => {
 			showModal = true;
 		}}
 	>
+		<span class="sparkle" aria-hidden="true">✨</span>
 		View Resume
 	</button>
 {/if}
@@ -202,5 +203,17 @@
 		}
 
 		margin-left: 1rem;
+		padding: 1rem 2.2rem;
+		font-size: 1.05rem;
+	}
+
+	.sparkle {
+		display: inline-block;
+		animation: spin-sparkle 3.5s ease-in-out infinite;
+	}
+
+	@keyframes spin-sparkle {
+		0%, 100% { transform: rotate(0deg) scale(1); }
+		50% { transform: rotate(20deg) scale(1.15); }
 	}
 </style>

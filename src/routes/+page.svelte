@@ -3,6 +3,7 @@
 	import IntroSection from '../layouts/introSection.svelte';
 	import '@styles/globals.css';
 	import BasketBallSection from '@layouts/basketBallSection.svelte';
+	import ChatBotSection from '@layouts/chatBotSection.svelte';
 	import Header from '@layouts/header.svelte';
 	import { onMount } from 'svelte';
 
@@ -44,42 +45,32 @@
 	};
 
 	const setBodyFontSize = () => {
-		if (window.screen.width >= 3840) {
+		// Use viewport width (window.innerWidth) so the rem scale stays in sync with
+		// the CSS @media queries, which also key off the viewport. Previously this
+		// used window.screen.width — the physical monitor size — which never changes
+		// on resize and reports differently across browsers/OS display-scaling combos,
+		// so Firefox and Chrome ended up on different rem scales.
+		const width = window.innerWidth;
+
+		if (width >= 3840) {
 			fontSize = 40;
-			document.documentElement.style.fontSize = '40px';
-			return;
-		}
-		if (window.screen.width >= 2560) {
+		} else if (width >= 2560) {
 			fontSize = 20;
-			document.documentElement.style.fontSize = '20px';
-			return;
-		}
-		if (window.screen.width >= 1440) {
+		} else if (width >= 1440) {
 			fontSize = 16;
-			document.documentElement.style.fontSize = '16px';
-			return;
-		}
-
-		if (window.screen.width <= 400) {
+		} else if (width <= 400) {
 			fontSize = 14;
-			document.documentElement.style.fontSize = '14px';
-			return;
-		}
-
-		if (window.screen.width <= 576) {
+		} else if (width <= 576) {
 			fontSize = 16;
-			document.documentElement.style.fontSize = '16px';
-			return;
+		} else {
+			fontSize = 10;
 		}
 
-		if (window.screen.width <= 1440) {
-			fontSize = 10;
-			document.documentElement.style.fontSize = '10px';
-			return;
-		}
+		document.documentElement.style.fontSize = `${fontSize}px`;
 	};
 
 	let scrollBasket: Element;
+	let scrollChat: Element;
 
 	onMount(() => {
 		setBodyFontSize();
@@ -93,11 +84,14 @@
 <div class="section-flex">
 	<div class="section">
 		<button
-			class="hoops-button"
+			class="genie-button genie-cta"
 			on:click={() => {
-				scrollBasket.scrollIntoView({ behavior: 'smooth' });
-			}}>Try Hoops!</button
+				scrollChat.scrollIntoView({ behavior: 'smooth' });
+			}}
 		>
+			<span class="lamp" aria-hidden="true">🪔</span>
+			Talk to Genie!
+		</button>
 
 		<IntroSection />
 	</div>
@@ -106,6 +100,12 @@
 <div class="section-flex">
 	<div class="section about" style="margin-block: 2rem;">
 		<AboutSection />
+	</div>
+</div>
+
+<div class="section-flex" bind:this={scrollChat}>
+	<div class="section" style="margin-block: 2rem;">
+		<ChatBotSection />
 	</div>
 </div>
 
@@ -216,36 +216,25 @@
 		right: -50px;
 	}
 
-	.hoops-button {
-		background-color: #bd6381;
-		color: var(--color-primary-a0);
-		border: none;
-		padding: 0.8rem 1.5rem;
-		font-size: 1rem;
-		font-weight: bold;
-		text-transform: uppercase;
-		cursor: pointer;
-		border-radius: 0, 5rem;
-		transition: all 0.3s ease;
-		box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
-		outline: none;
+	.genie-cta {
+		animation: genie-pulse 2.4s ease-in-out infinite;
+		font-size: 1.05rem;
+		padding: 1rem 2rem;
+	}
+
+	.lamp {
 		display: inline-block;
-		animation: pulse 1.5s infinite;
+		font-size: 1.2em;
+		animation: lamp-bob 2s ease-in-out infinite;
 	}
 
-	.hoops-button:hover {
-		background-color: #ac5776;
-		color: var(--color-primary-a10);
-		box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+	@keyframes genie-pulse {
+		0%, 100% { transform: scale(1); }
+		50% { transform: scale(1.04); }
 	}
 
-	@keyframes pulse {
-		0%,
-		100% {
-			transform: scale(1);
-		}
-		50% {
-			transform: scale(1.05);
-		}
+	@keyframes lamp-bob {
+		0%, 100% { transform: translateY(0) rotate(-4deg); }
+		50% { transform: translateY(-3px) rotate(4deg); }
 	}
 </style>

@@ -76,3 +76,117 @@ h3 {
 .big-round-button:hover {
 	background-color: var(--color-highlight);
 }
+
+/* === Genie card === */
+/* Shared glassy gradient surface used by the chatbot and project cards. */
+.genie-card {
+	position: relative;
+	background: linear-gradient(
+		145deg,
+		rgba(255, 255, 255, 0.85),
+		rgba(225, 225, 239, 0.75)
+	);
+	backdrop-filter: blur(14px);
+	-webkit-backdrop-filter: blur(14px);
+	border: 1px solid rgba(109, 114, 176, 0.25);
+	border-radius: 1.5rem;
+	box-shadow:
+		0 20px 60px -20px rgba(66, 68, 102, 0.4),
+		0 0 0 1px rgba(255, 255, 255, 0.4) inset;
+	overflow: hidden;
+	isolation: isolate;
+}
+
+.genie-card::before {
+	content: '';
+	position: absolute;
+	inset: -2px;
+	border-radius: inherit;
+	background:
+		radial-gradient(60% 80% at 10% 0%, rgba(189, 99, 129, 0.35), transparent 60%),
+		radial-gradient(50% 60% at 100% 100%, rgba(109, 114, 176, 0.45), transparent 60%);
+	filter: blur(24px);
+	opacity: 0.7;
+	z-index: -1;
+	pointer-events: none;
+	transition: opacity 260ms ease;
+}
+
+.genie-card.is-hoverable {
+	transition:
+		transform 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275),
+		box-shadow 300ms ease;
+	cursor: pointer;
+}
+
+.genie-card.is-hoverable:hover {
+	transform: translateY(-0.6rem);
+	box-shadow:
+		0 35px 70px -25px rgba(66, 68, 102, 0.55),
+		0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+}
+
+.genie-card.is-hoverable:hover::before {
+	opacity: 1;
+}
+
+/* === Genie button === */
+/* Bold pinkish gradient with shimmer. Use for high-emphasis CTAs (resume, hoops). */
+.genie-button {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	padding: 0.85rem 1.8rem;
+	border: none;
+	border-radius: 999px;
+	font-family: inherit;
+	font-weight: 800;
+	font-size: 1rem;
+	letter-spacing: 0.02em;
+	color: #fff;
+	background: linear-gradient(135deg, #bd6381 0%, #8a5fa5 50%, #6d72b0 100%);
+	background-size: 200% 200%;
+	background-position: 0% 50%;
+	cursor: pointer;
+	overflow: hidden;
+	box-shadow:
+		0 12px 28px -10px rgba(189, 99, 129, 0.55),
+		0 0 0 1px rgba(255, 255, 255, 0.25) inset;
+	transition:
+		transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1),
+		box-shadow 220ms ease,
+		background-position 600ms ease;
+}
+
+.genie-button::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+		120deg,
+		transparent 30%,
+		rgba(255, 255, 255, 0.35) 50%,
+		transparent 70%
+	);
+	transform: translateX(-120%);
+	transition: transform 700ms ease;
+	pointer-events: none;
+}
+
+.genie-button:hover {
+	transform: translateY(-2px) scale(1.03);
+	background-position: 100% 50%;
+	box-shadow:
+		0 20px 36px -10px rgba(189, 99, 129, 0.75),
+		0 0 0 1px rgba(255, 255, 255, 0.35) inset;
+}
+
+.genie-button:hover::before {
+	transform: translateX(120%);
+}
+
+.genie-button:active {
+	transform: translateY(0) scale(0.98);
+}
