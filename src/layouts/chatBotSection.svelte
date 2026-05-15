@@ -35,9 +35,21 @@
 	let wllamaLlm: any = null;
 	let scrollArea: HTMLDivElement;
 	let inputEl: HTMLTextAreaElement;
+	// Probed once on mount. We default to false so the UI advertises the WASM
+	// path until we confirm a real adapter exists — better to under-promise.
+	let canUseWebGPU = false;
 
-	function webgpuSupported(): boolean {
-		return typeof navigator !== 'undefined' && 'gpu' in navigator;
+	async function probeWebGPU(): Promise<boolean> {
+		// `'gpu' in navigator` is true on Android Chrome even when no adapter is
+		// available, so we have to actually request one. requestAdapter() resolves
+		// to null (not a throw) when the device isn't on Chrome's WebGPU allow-list.
+		if (typeof navigator === 'undefined' || !('gpu' in navigator)) return false;
+		try {
+			const adapter = await (navigator as any).gpu.requestAdapter();
+			return !!adapter;
+		} catch {
+			return false;
+		}
 	}
 
 	async function scrollToBottom() {
@@ -70,9 +82,19 @@
 		}, 600);
 
 		try {
-			if (webgpuSupported()) {
-				backend = 'webgpu';
-				await loadWebGPU();
+			if (canUseWebGPU) {
+				try {
+					backend = 'webgpu';
+					await loadWebGPU();
+				} catch (gpuErr) {
+					// Probe said yes but MediaPipe still couldn't init (e.g. adapter
+					// exists but lacks a required feature). Drop down to WASM rather
+					// than dead-ending in the error state.
+					console.warn('WebGPU init failed, falling back to WASM', gpuErr);
+					canUseWebGPU = false;
+					backend = 'wasm';
+					await loadWasm();
+				}
 			} else {
 				backend = 'wasm';
 				await loadWasm();
@@ -93,7 +115,7 @@
 		const genai = await FilesetResolver.forGenAiTasks(MEDIAPIPE_WASM_URL);
 		mediapipeLlm = await LlmInference.createFromOptions(genai, {
 			baseOptions: { modelAssetPath: WEBGPU_MODEL_URL },
-			maxTokens: 512,
+			maxTokens: 1024,
 			topK: 40,
 			temperature: 0.8,
 			randomSeed: 42
@@ -220,8 +242,9 @@
 		inputEl.style.height = Math.min(inputEl.scrollHeight, 120) + 'px';
 	}
 
-	onMount(() => {
+	onMount(async () => {
 		scrollToBottom();
+		canUseWebGPU = await probeWebGPU();
 	});
 </script>
 
@@ -266,7 +289,7 @@
 					<button class="wake-btn" on:click={loadModel}>
 						<span>Wake me up</span>
 						<small>
-							{webgpuSupported()
+							{canUseWebGPU
 								? '~238 MB · gemma on webgpu'
 								: '~386 MB · smollm on cpu (slower)'}
 						</small>

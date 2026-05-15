@@ -52,18 +52,35 @@
 		// so Firefox and Chrome ended up on different rem scales.
 		const width = window.innerWidth;
 
-		if (width >= 3840) {
-			fontSize = 40;
-		} else if (width >= 2560) {
-			fontSize = 20;
-		} else if (width >= 1440) {
-			fontSize = 16;
-		} else if (width <= 400) {
+		// Mobile breakpoints first — these match the `max-width: 576px` media queries
+		// scattered across components, which key the dedicated mobile styles.
+		if (width <= 400) {
 			fontSize = 14;
 		} else if (width <= 576) {
 			fontSize = 16;
+		}
+		// Above the mobile range we scale rem with the viewport so 1rem-sized
+		// elements stay proportional. Previously everything between 577 and 1439
+		// shared a single 10px rem, which made iPads and 1080p screens feel tiny
+		// — text was small and the 90rem section was much narrower than the screen.
+		else if (width >= 3840) {
+			fontSize = 40;
+		} else if (width >= 2560) {
+			fontSize = 24;
+		} else if (width >= 1920) {
+			fontSize = 19;
+		} else if (width >= 1600) {
+			fontSize = 17;
+		} else if (width >= 1440) {
+			fontSize = 16;
+		} else if (width >= 1200) {
+			fontSize = 14;
+		} else if (width >= 992) {
+			fontSize = 13;
+		} else if (width >= 768) {
+			fontSize = 12;
 		} else {
-			fontSize = 10;
+			fontSize = 11;
 		}
 
 		document.documentElement.style.fontSize = `${fontSize}px`;
